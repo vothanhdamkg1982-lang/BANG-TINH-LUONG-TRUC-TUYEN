@@ -14,26 +14,19 @@
            BIẾN TÙY CHỈNH – THAY ĐỔI TẠI ĐÂY
            ============================================================ */
         :root {
-            /* Màu chính (xanh) */
-            --primary: #1e3a5f;          /* THAY ĐỔI màu xanh tại đây */
+            --primary: #1e3a5f;
             --primary-light: #2a5298;
             --primary-dark: #0f2440;
-
-            /* Màu phụ (cam) */
-            --accent: #e67e22;           /* THAY ĐỔI màu cam tại đây */
+            --accent: #e67e22;
             --accent-light: #f39c12;
-
-            /* Màu nền */
             --bg-start: #f6f9fc;
             --bg-end: #e9eef5;
-
-            /* Bo góc, bóng */
             --radius: 24px;
             --shadow: 0 30px 80px rgba(30, 58, 95, 0.12);
         }
 
         /* ============================================================
-           TOÀN BỘ STYLE (sử dụng biến)
+           RESET & TOÀN CỤC
            ============================================================ */
         * {
             margin: 0;
@@ -91,7 +84,6 @@
             gap: 14px;
         }
 
-        /* ----- LOGO (icon-box hoặc ảnh) ----- */
         .salary-header .brand .logo-box {
             width: 50px;
             height: 50px;
@@ -105,21 +97,6 @@
             box-shadow: 0 8px 20px rgba(30, 58, 95, 0.25);
             overflow: hidden;
             flex-shrink: 0;
-        }
-
-        /* Nếu bạn dùng ảnh logo, thay style bên dưới */
-        .salary-header .brand .logo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Nếu dùng SVG, bạn có thể đặt trực tiếp trong logo-box */
-        .salary-header .brand .logo-box svg {
-            width: 70%;
-            height: 70%;
-            fill: #fff;
         }
 
         .salary-header .brand .info h1 {
@@ -450,6 +427,113 @@
             font-weight: 500;
         }
 
+        /* ============================================================
+           HƯỚNG DẪN SỬ DỤNG (ACCORDION)
+           ============================================================ */
+        .guide-wrapper {
+            margin-top: 28px;
+            border: 1px solid #eef2f7;
+            border-radius: var(--radius);
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .guide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            cursor: pointer;
+            background: #f9fbfd;
+            transition: background 0.2s;
+            user-select: none;
+        }
+
+        .guide-header:hover {
+            background: #f1f5f9;
+        }
+
+        .guide-header .title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--primary);
+        }
+
+        .guide-header .title i {
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        .guide-header .toggle-icon {
+            font-size: 20px;
+            color: #6b7f96;
+            transition: transform 0.3s ease;
+        }
+
+        .guide-header .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .guide-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+            padding: 0 24px;
+            background: #ffffff;
+        }
+
+        .guide-body.open {
+            max-height: 2000px; /* đủ lớn để chứa nội dung */
+            padding: 20px 24px 24px;
+        }
+
+        .guide-body p {
+            margin-bottom: 12px;
+            color: #2c4058;
+            font-size: 14.5px;
+            line-height: 1.7;
+        }
+
+        .guide-body ul {
+            margin: 8px 0 16px 24px;
+            list-style: none;
+        }
+
+        .guide-body ul li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: #2c4058;
+        }
+
+        .guide-body ul li i {
+            color: var(--accent);
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .guide-body .highlight-box {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 14px 18px;
+            border-left: 4px solid var(--accent);
+            margin: 12px 0 8px;
+        }
+
+        .guide-body .highlight-box strong {
+            color: var(--primary);
+        }
+
         /* ---------- FOOTER BẢN QUYỀN ---------- */
         .salary-footer {
             margin-top: 30px;
@@ -475,7 +559,6 @@
             font-size: 16px;
         }
 
-        /* Tên bản quyền – THAY ĐỔI tại đây */
         .salary-footer .copyright strong {
             color: var(--primary);
             font-weight: 600;
@@ -533,6 +616,12 @@
                 flex-direction: column;
                 text-align: center;
             }
+            .guide-body {
+                padding: 0 16px;
+            }
+            .guide-body.open {
+                padding: 16px 16px 20px;
+            }
         }
 
         ::-webkit-scrollbar {
@@ -559,17 +648,11 @@
         <!-- ===== HEADER ===== -->
         <header class="salary-header">
             <div class="brand">
-                <!-- LOGO: Bạn có thể thay icon-box bằng ảnh hoặc SVG -->
                 <div class="logo-box">
-                    <!-- Mặc định là icon Font Awesome -->
                     <i class="fas fa-calculator"></i>
-                    <!-- Nếu muốn dùng ảnh, bỏ comment dòng dưới và comment dòng trên -->
-                    <!-- <img src="path/to/logo.png" alt="Logo" /> -->
-                    <!-- Nếu dùng SVG, chèn trực tiếp vào đây -->
                 </div>
                 <div class="info">
-                    <!-- Tên tiêu đề – THAY ĐỔI nếu cần -->
-                    <h1>BẢNG TÍNH LƯƠNG <span>TRỰC TUYẾN</span></h1>
+                    <h1>Bảng Tính <span>Lương Trực Tuyến</span></h1>
                     <span class="sub"><i class="fas fa-arrow-right" style="color:var(--accent);font-size:11px;"></i> Điều chỉnh hệ số &amp; phụ cấp</span>
                 </div>
             </div>
@@ -742,7 +825,7 @@
             </div>
         </div>
 
-        <!-- ===== CHÚ THÍCH ===== -->
+        <!-- ===== CHÚ THÍCH CÔNG THỨC ===== -->
         <div class="salary-note">
             <strong>📌 Công thức tham khảo</strong>
             <span style="display:inline-block;margin-left:6px;color:#4d6a8a;">(có tùy chỉnh tỷ lệ)</span>
@@ -760,11 +843,42 @@
             </span>
         </div>
 
+        <!-- ============================================================
+             HƯỚNG DẪN SỬ DỤNG (ACCORDION)
+             ============================================================ -->
+        <div class="guide-wrapper">
+            <div class="guide-header" id="guideToggle">
+                <div class="title">
+                    <i class="fas fa-question-circle"></i>
+                    Hướng dẫn sử dụng
+                </div>
+                <span class="toggle-icon" id="guideIcon">
+                    <i class="fas fa-chevron-down"></i>
+                </span>
+            </div>
+            <div class="guide-body" id="guideBody">
+                <p><strong>👋 Chào bạn!</strong> Bảng tính lương này giúp bạn tính toán tiền lương, các khoản phụ cấp và bảo hiểm một cách nhanh chóng.</p>
+
+                <ul>
+                    <li><i class="fas fa-pen"></i> <strong>Điều chỉnh thông số:</strong> Nhập hoặc thay đổi các giá trị ở cột bên trái (hệ số lương, phụ cấp, tỷ lệ %).</li>
+                    <li><i class="fas fa-sync-alt"></i> <strong>Cập nhật tự động:</strong> Kết quả sẽ thay đổi ngay khi bạn sửa bất kỳ ô nhập nào.</li>
+                    <li><i class="fas fa-percent"></i> <strong>Tỷ lệ tùy chỉnh:</strong> Bạn có thể thay đổi tỷ lệ % cho phụ cấp ưu đãi và đặc biệt (mặc định 50% và 30%).</li>
+                    <li><i class="fas fa-money-bill-wave"></i> <strong>Kết quả chi tiết:</strong> Xem các hệ số phụ cấp, tổng hệ số, tiền lương tháng, các khoản bảo hiểm và số tiền thực nhận.</li>
+                    <li><i class="fas fa-mobile-alt"></i> <strong>Hiển thị trên mọi thiết bị:</strong> Giao diện thân thiện với máy tính, máy tính bảng và điện thoại.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>💡 Mẹo:</strong> Bạn có thể nhấn vào dòng tiêu đề này để thu gọn / mở rộng hướng dẫn.
+                </div>
+
+                <p style="margin-top: 8px;"><strong>📌 Lưu ý:</strong> Các công thức tính toán được hiển thị ở phần "Chú thích công thức" phía trên. Mọi thay đổi đều ảnh hưởng đến kết quả cuối cùng, hãy kiểm tra kỹ trước khi sử dụng.</p>
+            </div>
+        </div>
+
         <!-- ===== FOOTER BẢN QUYỀN ===== -->
         <footer class="salary-footer">
             <div class="copyright">
                 <i class="fas fa-copyright"></i>
-                <!-- THAY ĐỔI tên bản quyền tại đây -->
                 <span>2026 <strong>Võ Thanh Đậm</strong> – Bảng tính lương trực tuyến</span>
             </div>
             <div class="version">
@@ -774,7 +888,7 @@
     </div>
 
     <!-- ================================================================
-    JAVASCRIPT (giữ nguyên)
+    JAVASCRIPT – TÍNH LƯƠNG + TOGGLE HƯỚNG DẪN
     ================================================================ -->
     <script>
         (function() {
@@ -882,7 +996,21 @@
                 el.classList.add('updated');
             });
 
-            console.log('✅ Bảng tính lương đã sẵn sàng (bản tùy chỉnh dễ sửa)');
+            // ---- TOGGLE HƯỚNG DẪN ----
+            const guideToggle = document.getElementById('guideToggle');
+            const guideBody = document.getElementById('guideBody');
+            const guideIcon = document.getElementById('guideIcon');
+
+            guideToggle.addEventListener('click', function() {
+                const isOpen = guideBody.classList.toggle('open');
+                guideIcon.classList.toggle('open', isOpen);
+                // Đổi icon
+                guideIcon.innerHTML = isOpen ?
+                    '<i class="fas fa-chevron-up"></i>' :
+                    '<i class="fas fa-chevron-down"></i>';
+            });
+
+            console.log('✅ Bảng tính lương đã sẵn sàng (có hướng dẫn sử dụng)');
         })();
     </script>
 
